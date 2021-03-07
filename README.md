@@ -24,7 +24,7 @@ docker run -d --name mycontainer -p 80:80 pokeapi
 - Clone the repo
 - Run in terminal on the requirements.txt dir:
 ```console
-run: pip install -r requirements.txt in your shell
+run: pip install -r requirements.txt
 ```
 - Once the requirements have been install, run in terminal in app dir:
 ```console
