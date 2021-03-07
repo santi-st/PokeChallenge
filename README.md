@@ -49,6 +49,17 @@ http://127.0.0.1/growlithe
 http://127.0.0.1/?q=cha&offset=1&limit=5
 ```
 
+### Endpoint Documentation
+- Acces the Endpoint interactive documentation:
+- Swagger UI
+```console
+http://127.0.0.1/docs
+```
+- ReDoc
+```console
+http://127.0.0.1/redoc
+```
+
 ### Testing
 - Run in terminal:
 ```
