@@ -1,7 +1,6 @@
 # <b>PokeChallenge </b>
 
-This is the repository for the PokeChallenge app.
-
+This is the repository for the PokeChallenge app, made under FastApi Framework
 
 ## Deploy
 
