@@ -18,6 +18,11 @@ def test_main_get_pokemon_by_name_not_found():
     assert response.status_code == 404
     assert response.json() == {"detail": "Pokemon name not found"}
 
+def test_main_get_pokemon_by_name_stringnumer_paramenter():
+    response = client.get("/3")
+    assert response.status_code == 422
+    assert response.json() == {"detail": "the parameter must be the name, not the ID"}
+
 def test_main_get_pokemon_by_name_ok():
     response = client.get("/ditto")
     assert response.status_code == 200

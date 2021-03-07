@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Path, Query, status
+from fastapi import FastAPI, Path, Query, status, HTTPException
 from typing import Optional
 from models import PokemonOut, PokemonListDataOut
-from tools import pokemon_data_builder, list_pokenon_data_builder, connection
+from tools import connection
+from usecase import pokemon_data_builder, list_pokemon_data_builder
 
 responses = {
     404: {"description": "Pokemon not found",
@@ -60,7 +61,7 @@ async def get_pokemon_list(
             }
 
     response = connection(BASE_URL, **payload)
-    pokemonsdata = list_pokenon_data_builder(response, q, offset, limit)
+    pokemonsdata = await list_pokemon_data_builder(response, q, offset, limit)
     pokemons_out = PokemonListDataOut(**pokemonsdata)
 
     return pokemons_out
@@ -84,12 +85,11 @@ async def get_pokemon_by_name(
     ### "/{pokemon_name}"
     Returns the data info for the Pokemon name given.
     """
-
     #logic to handle a number(string) as a parameter
     if pokemon_name.isdigit():
-        return {"message": "the parameter must be the name, not the ID"}
+        raise HTTPException(status_code=422 , detail="the parameter must be the name, not the ID")
 
     response = connection(BASE_URL+pokemon_name)
-    pokemon_out_dict = pokemon_data_builder(response)
+    pokemon_out_dict = await pokemon_data_builder(response)
 
     return pokemon_out_dict
