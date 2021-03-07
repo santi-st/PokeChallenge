@@ -3,9 +3,9 @@ from models import PokemonIn, PokemonListDataIn
 
 async def pokemon_data_builder(response):
     """
-    Args: (pokemon_in)
+    Args: (pokemon_in).
     Return: pokemon_out_dict
-    function to build the data to be delivered by the enpoint
+    function to build the data to be delivered by the enpoint.
     """
     pokemon_in = PokemonIn(**response.json())
     pokemon_in_dict = pokemon_in.dict()
@@ -48,7 +48,11 @@ async def pokemon_data_builder(response):
     return pokemon_out_dict
 
 async def list_pokemon_data_builder(response, q, offset, limit):
-
+    """
+    Args: (response, q, offset, limit).
+    Return: pokemons
+    function to build the data to be delivered by the enpoint.
+    """
     pokemon_data_in = PokemonListDataIn(**response.json())
 
     pokemons = {}
@@ -75,6 +79,11 @@ async def list_pokemon_data_builder(response, q, offset, limit):
 
 
 async def in_list_pokemon_data_builder(pokemon_data_in):
+    """
+    Args: (pokemon_data_in).
+    Return: data
+    function to build a dict used in the list_pokemon_data_builder function.
+    """
     data=[]
     total=0
     for count in pokemon_data_in.results:
